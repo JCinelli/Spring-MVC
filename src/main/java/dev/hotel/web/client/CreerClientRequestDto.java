@@ -1,4 +1,4 @@
-package dev.hotel.web;
+package dev.hotel.web.client;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -10,7 +10,7 @@ public class CreerClientRequestDto {
 	private String nom;
 
 	@NotBlank
-	@Size(min = 3)
+	@Size(min = 2)
 	private String prenoms;
 
 	public String getNom() {

@@ -1,4 +1,4 @@
-package dev.hotel.web;
+package dev.hotel.web.client;
 
 import java.util.UUID;
 

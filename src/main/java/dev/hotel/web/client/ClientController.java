@@ -1,4 +1,4 @@
-package dev.hotel.web;
+package dev.hotel.web.client;
 
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +62,8 @@ public class ClientController {
 			BindingResult resultatValidation) {
 
 		if (resultatValidation.hasErrors()) {
-			return ResponseEntity.badRequest().body("Erreur");
+			return ResponseEntity.badRequest()
+					.body("Erreur : Le nom ou le(s) prenom(s) doivent faire plus de 2 caractères !");
 		}
 
 		return ResponseEntity
