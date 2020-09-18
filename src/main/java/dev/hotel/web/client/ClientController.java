@@ -31,11 +31,18 @@ public class ClientController {
 		this.clientService = clientService;
 	}
 
-	// GET /clients?start=X&size=Y
 	@GetMapping
-	public List<Client> allClients(@RequestParam Integer start, @RequestParam Integer size) {
+	public List<Client> allClients() {
 
-		return clientService.listAllClients(start, size);
+		return clientService.listAllClients();
+
+	}
+
+	// GET /clients?start=X&size=Y
+	@GetMapping("tri")
+	public List<Client> allClientsPage(@RequestParam Integer start, @RequestParam Integer size) {
+
+		return clientService.listAllClientsPage(start, size);
 
 	}
 
@@ -52,6 +59,23 @@ public class ClientController {
 		} else {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Identifiant client introuvable . . .");
+
+		}
+
+	}
+
+	@GetMapping("nom={nom}")
+	public ResponseEntity<?> getClientByNom(@PathVariable String nom) {
+
+		List<Optional<Client>> listOptClient = clientService.recupererClientByName(nom);
+
+		if (!listOptClient.isEmpty()) {
+
+			return ResponseEntity.status(HttpStatus.OK).body(listOptClient);
+
+		} else {
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("\nNom de client introuvable . . .");
 
 		}
 

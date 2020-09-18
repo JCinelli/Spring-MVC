@@ -21,7 +21,13 @@ public class ClientService {
 		this.clientRepository = clientRepository;
 	}
 
-	public List<Client> listAllClients(Integer start, Integer size) {
+	public List<Client> listAllClients() {
+
+		return clientRepository.findAll();
+
+	}
+
+	public List<Client> listAllClientsPage(Integer start, Integer size) {
 
 		return clientRepository.findAll(PageRequest.of(start, size)).getContent();
 
@@ -30,6 +36,12 @@ public class ClientService {
 	public Optional<Client> recupererClient(UUID uuid) {
 
 		return clientRepository.findById(uuid);
+
+	}
+
+	public List<Optional<Client>> recupererClientByName(String nom) {
+
+		return clientRepository.findByNom(nom);
 
 	}
 

@@ -37,7 +37,7 @@ class ClientControllerTest {
 
 		Client client2 = new Client("Sardine", "Michel");
 
-		Mockito.when(clientService.listAllClients(0, 2)).thenReturn(Arrays.asList(client, client2));
+		Mockito.when(clientService.listAllClientsPage(0, 2)).thenReturn(Arrays.asList(client, client2));
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/clients?start=0&size=2")).andExpect(status().isOk())
 				.andExpect(jsonPath("[0].nom", is("Serpent"))).andExpect(jsonPath("[0].prenoms", is("Jhon")))
